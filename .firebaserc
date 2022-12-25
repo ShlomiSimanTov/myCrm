@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "mycrm-8ed43": {
+      "hosting": {
+        "myCrm": [
+          "mycrm-8ed43"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "mycrm-8ed43"
+  }
+}

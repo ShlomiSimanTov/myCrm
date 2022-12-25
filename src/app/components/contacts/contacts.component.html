@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+<div class="container-fluid row justify-content-center">
+  <div class="containter col-lg-3 col-md-10">
+    <app-side-navbar></app-side-navbar>
+  </div>
+  <div class="container-fluid col-lg-9 col-md-12">
+    <div class="container shadow p-3 mt-3 bg-body rounded">
+      <h1 class="text=lg"><i class="fa-solid fa-address-book"></i> Contacts</h1>
+      <h4>Company's Contacts Information.</h4>
+    </div>
+
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-3 col-sm-auto">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"
+              ><i class="fa-solid fa-magnifying-glass"></i
+            ></span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search Name"
+              [(ngModel)]="name"
+              aria-label="name"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+        </div>
+        <div class="col mb-3">
+          <a class="btn btn-success" (click)="clearSearch()">
+            <i class="fa-solid fa-eraser"></i> Clear Search
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <ng-container *ngIf="contacts.length; else noContacts">
+          <ng-container
+            *ngIf="contacts | filterContact: 'name':name as contacts"
+          >
+            <table
+              class="table shadow p-5 bg-body rounded align-middle table-hover text-center"
+            >
+              <thead class="table-primary">
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Birthday</th>
+                  <th scope="col">Phone</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let contact of contacts; let i = index">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ contact.name }}</td>
+                  <td>{{ contact.email }}</td>
+                  <td>{{ contact.birthday | date: "dd/MM/yyyy" }}</td>
+                  <td>
+                    <ul *ngFor="let phone of contact.phones">
+                      <li>{{ phone }}</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+        </ng-container>
+      </div>
+      <ng-template #noContacts>
+        <p>There are No Contacts</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <div class="text-center py-3 text-primary">
+            <h1>
+              MY <i class="fa-solid fa-angles-up text-info"></i> CRM
+            </h1>
+          </div>
+          <img src="../assets/images/logo1.jpg" class="img-fluid" alt="CRM Logo"/>
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form #registerForm="ngForm" (ngSubmit)="register()">
+            <div class="py-3 text-primary text-center">
+              <h1>Enter Detials to Register</h1>
+            </div>
+
+            <!-- Email Input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form3Example3">Email address</label>
+              <small
+              class="text-danger"
+              *ngIf="email.invalid && (email.touched || email.dirty)">(Wrong email Format)</small>
+              <input
+                type="email"
+                name="email"
+                id="form3Example3"
+                class="form-control form-control-lg"
+                placeholder="Enter a valid email address"
+                [(ngModel)]="user.email"
+                required
+                email
+                #email="ngModel"
+              />
+            </div>
+  
+            <!-- Password Input -->
+            <div class="form-outline mb-3">
+              <label class="form-label" for="form3Example4">Password</label>
+              <small
+                class="text-danger"
+                *ngIf="password.invalid && (password.touched || password.dirty)">(Password length must be at least 8 characters)</small>
+              <input
+                type="password"
+                name="password"
+                id="form3Example4"
+                class="form-control form-control-lg"
+                placeholder="Enter password"
+                [(ngModel)]="user.password"
+                required
+                minlength="8"
+                #password="ngModel"
+              />
+            </div>
+  
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Checkbox -->
+              <div class="form-check mb-0">
+                <input
+                  class="form-check-input me-2"
+                  type="checkbox"
+                  value=""
+                  id="form2Example3"
+                />
+                <label class="form-check-label" for="form2Example3">
+                  Remember me
+                </label>
+              </div>
+            </div>
+  
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg col-12"
+                style="padding-left: 2.5rem; padding-right: 2.5rem"
+                [disabled]="registerForm.invalid"
+              >Register</button>
+              <p class="small fw-bold mt-2 pt-1 mb-0">
+                Already have an account?
+                <a routerLink="/login" class="link-danger">Login</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>

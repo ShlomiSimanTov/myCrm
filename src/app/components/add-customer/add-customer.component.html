@@ -1,0 +1,115 @@
+<div class="container p-3">
+    <form #addCustomerForm="ngForm" (ngSubmit)="addNewCustomer()">
+      <h1><i class="fa-solid fa-user-plus"></i> Add new Customer</h1>
+      <div class="row">
+        <div class="mb-2 col">
+          <label for="exampleFormControlInput1" class="form-label">First Name</label>
+          <small class="text-danger"
+            *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)"
+          >(Required)</small>
+  
+          <input
+            type="text"
+            class="form-control shadow p-3 bg-body rounded"
+            id="exampleFormControlInput1"
+            placeholder="Enter First Name"
+            name="firstName"
+            [(ngModel)]="customer.firstName"
+            #firstName="ngModel"
+            required
+            minlength="2"
+          />
+        </div>
+        <div class="mb-2 col">
+          <label for="exampleFormControlInput1" class="form-label">Last Name</label>
+          <small class="text-danger"
+            *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)"
+          >(Required)</small>
+  
+          <input
+            type="text"
+            class="form-control shadow p-3 bg-body rounded"
+            id="exampleFormControlInput1"
+            placeholder="Enter Last Name"
+            name="lastName"
+            [(ngModel)]="customer.lastName"
+            #lastName="ngModel"
+            required
+            minlength="2"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-2 col">
+          <label for="exampleFormControlInput1" class="form-label">Email</label>
+          <small class="text-danger"
+            *ngIf="email.invalid && (email.touched || email.dirty)"
+          >(Wrong email Format)</small>
+  
+          <input
+            type="email"
+            class="form-control shadow p-3 bg-body rounded"
+            id="exampleFormControlInput1"
+            placeholder="Enter Email"
+            name="email"
+            [(ngModel)]="customer.email"
+            #email="ngModel"
+            email
+            required
+          />
+        </div>
+        <div class="mb-2 col">
+          <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
+          <small class="text-danger"
+            *ngIf="phone.invalid && (phone.touched || phone.dirty)"
+          >(Required)</small>
+  
+          <input
+            type="text"
+            class="form-control shadow p-3 bg-body rounded"
+            id="exampleFormControlInput1"
+            placeholder="Enter Phone Number"
+            name="phone"
+            [(ngModel)]="customer.phone"
+            #phone="ngModel"
+            required
+            pattern="^\+?(972|0)(\-)?0?(([23489]{1}\d{7})|[5]{1}\d{8})$"
+          />
+        </div>
+      </div>
+      <div class="mb-2">
+        <label for="exampleFormControlInput1" class="form-label">Address</label>
+  
+        <input
+          type="text"
+          class="form-control shadow p-3 bg-body rounded"
+          id="exampleFormControlInput1"
+          placeholder="Enter Address"
+          name="address"
+          [(ngModel)]="customer.address"
+          #address="ngModel"
+        />
+      </div>
+  
+      <div class="mb-2">
+        <label for="exampleFormControlInput1" class="form-label">Notes</label>
+        <textarea
+          type="text-aria"
+          class="form-control shadow p-3 bg-body rounded"
+          id="exampleFormControlInput1"
+          placeholder="Enter Notes"
+          name="notes"
+          [(ngModel)]="customer.notes"
+          #notes="ngModel"
+          rows="3"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="addCustomerForm.invalid"
+      >
+        <i class="fa-solid fa-plus"></i> Add Customer
+      </button>
+    </form>
+  </div>

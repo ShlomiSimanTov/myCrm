@@ -1,0 +1,118 @@
+<app-navbar></app-navbar>
+<div class="container-fluid row justify-content-center">
+  <div class="containter col-lg-3 col-md-10">
+    <app-side-navbar></app-side-navbar>
+  </div>
+  <div class="container-fluid col-lg-9 col-md-12">
+    <div class="container shadow p-3 mt-3 bg-body rounded">
+      <h1 class="text=lg"><i class="fa-solid fa-user-group"></i> Customers</h1>
+      <h4>Company's Customers Information.</h4>
+    </div>
+
+    <div class="container mt-3">
+      <div class="row justify-content-between">
+        <div class="col input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"
+            ><i class="fa-solid fa-magnifying-glass"></i
+          ></span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search by: First Name"
+            [(ngModel)]="firstName"
+            aria-label="firstName"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+        <div class="col input-group mb-3">
+          <span class="input-group-text" id="basic-addon2"
+            ><i class="fa-solid fa-magnifying-glass"></i
+          ></span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search by: Last Name"
+            [(ngModel)]="lastName"
+            aria-label="lastName"
+            aria-describedby="basic-addon2"
+          />
+        </div>
+        <div class="col input-group mb-3">
+          <span class="input-group-text" id="basic-addon3"
+            ><i class="fa-solid fa-magnifying-glass"></i
+          ></span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search by: Phone"
+            [(ngModel)]="phone"
+            aria-label="phone"
+            aria-describedby="basic-addon3"
+          />
+        </div>
+        <div class="col mb-3">
+          <a class="btn btn-success" (click)="clearSearch()">
+            <i class="fa-solid fa-eraser"></i> Clear Search
+          </a>
+        </div>
+        <div class="col mb-3">
+          <a class="btn btn-primary" (click)="addCustomer()">
+            <i class="fa-solid fa-user-plus"></i> Add Customer
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <ng-container *ngIf="customers.length; else noCustomers">
+          <ng-container
+            *ngIf="
+              customers
+                | filter: 'firstName':firstName
+                | filter: 'lastName':lastName
+                | filter: 'phone':phone as customers
+            "
+          >
+            <table
+              class="table shadow p-5 bg-body rounded align-middle table-hover text-center"
+            >
+              <thead class="table-primary">
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let customer of customers; index as i">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ customer.firstName }}</td>
+                  <td>{{ customer.lastName }}</td>
+                  <td>{{ customer.phone }}</td>
+                  <td>{{ customer.email }}</td>
+                  <td>
+                    <a (click)="updateCustomer(customer)" role="button"
+                      ><i class="fa-solid fa-pencil text-success"></i></a
+                    >&nbsp;&nbsp;
+                    <a (click)="veiwCustomer(customer)" role="button"
+                      ><i class="fa-solid fa-eye text-primary"></i></a
+                    >&nbsp;&nbsp;
+                    <a (click)="deleteCustomer(customer)" role="button"
+                      ><i class="fa-solid fa-trash text-danger"></i
+                    ></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+        </ng-container>
+      </div>
+
+      <ng-template #noCustomers>
+        <p>There are No Customers</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
